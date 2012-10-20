@@ -7,8 +7,10 @@ apt-get install puppet git-core
 cd /etc/puppet/modules
 git clone git://github.com/example42/puppet-vim.git vim
 git clone git://github.com/example42/puppet-nginx.git nginx
+git clone git://github.com/example42/puppi.git
+git clone git://github.com/example42/puppet-logstash.git logstash
 git clone git://github.com/puppetlabs/puppetlabs-stdlib.git stdlib
-git clone git://github.com/josephmc5/puppet-dropbox.git dropbox
+git clone git://github.com/alister/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
 
 cat > /etc/puppet/manifests/site.pp << EOF
