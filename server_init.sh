@@ -14,6 +14,7 @@ git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
 	class { 'vim' }
+	class { 'dropbox' }
 }
 EOF
 
