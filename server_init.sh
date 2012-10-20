@@ -12,11 +12,14 @@ git clone git://github.com/example42/puppet-logstash.git logstash
 git clone git://github.com/puppetlabs/puppetlabs-stdlib.git stdlib
 git clone git://github.com/alister/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
+git clone git://github.com/example42/puppet-java.git java
 
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
-	class { 'vim' }
-	class { 'dropbox' }
+	class { 'puppi': }
+	class { 'dropbox': }
+	class { 'nginx': }
+	class { 'logstash': }
 }
 EOF
 
