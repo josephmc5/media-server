@@ -1,25 +1,61 @@
 #!/bin/bash
 
-wget http://apt.puppetlabs.com/puppetlabs-release-quantal.deb
-dpkg -i puppetlabs-release-quantal.deb
+wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+dpkg -i puppetlabs-release-precise.deb
 apt-get update
-apt-get install puppet git-core
+apt-get install -y puppet git-core
+cat > /etc/puppet/hiera.yaml << EOF
+:hierarchy:
+    - %{operatingsystem}
+    - common
+:backends:
+    - yaml
+:yaml:
+    :datadir: '/etc/puppet/hieradata'
+EOF
+mkdir /etc/puppet/hieradata
+cp common.yaml /etc/puppet/hieradata/
+
 cd /etc/puppet/modules
 git clone git://github.com/example42/puppet-vim.git vim
-git clone git://github.com/example42/puppet-nginx.git nginx
-git clone git://github.com/example42/puppi.git
-git clone git://github.com/example42/puppet-logstash.git logstash
+git clone git://github.com/jfryman/puppet-nginx.git nginx
 git clone git://github.com/puppetlabs/puppetlabs-stdlib.git stdlib
+git clone git://github.com/onyxpoint/pupmod-concat.git concat
+git clone https://github.com/josephmc5/puppet-python.git python
+git clone https://github.com/josephmc5/puppet-git.git git
+git clone git://github.com/evolvingweb/puppet-apt.git apt
+git clone https://github.com/rodjek/puppet-logrotate logrotate
 git clone git://github.com/alister/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
 git clone git://github.com/example42/puppet-java.git java
 
+git clone git://github.com/josephmc5/puppet-maraschino.git maraschino
+git clone git://github.com/josephmc5/puppet-plex-server.git plex-server
+git clone git://github.com/josephmc5/puppet-subsonic.git subsonic
+git clone git://github.com/josephmc5/puppet-sabnzbd.git sabnzbd
+git clone git://github.com/josephmc5/puppet-headphones.git headphones
+git clone git://github.com/josephmc5/puppet-couchpotatoserver.git couchpotatoserver
+git clone git://github.com/josephmc5/puppet-sickbeard.git sickbeard
+gti clone git://github.com/josephmc5/puppet-minisub.git minisub
+
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
-	class { 'puppi': }
-	class { 'dropbox': }
-	class { 'nginx': }
-	class { 'logstash': }
+    class { 'dropbox': }
+    class { 'nginx': }
+    $external_dns = hiera('external_dns', "localhost")             
+    nginx::resource::vhost { "$external_dns":
+       ensure   => present,
+       www_root => '/var/www',
+    }   
+    class { 'python::virtualenv': }
+    class { 'sickbeard': }
+    class { 'sabnzbd': }
+    class { 'couchpotatoserver': }
+    class { 'headphones': }
+    class { 'maraschino': }
+    class { 'subsonic': }
+    class { 'minisub': }
+    class { 'plex-server': }
 }
 EOF
 
