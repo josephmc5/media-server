@@ -25,7 +25,7 @@ git clone https://github.com/josephmc5/puppet-python.git python
 git clone https://github.com/josephmc5/puppet-git.git git
 git clone git://github.com/evolvingweb/puppet-apt.git apt
 git clone https://github.com/rodjek/puppet-logrotate logrotate
-git clone git://github.com/alister/puppet-dropbox.git dropbox
+git clone git://github.com/josephmc5/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
 git clone git://github.com/example42/puppet-java.git java
 
@@ -36,13 +36,13 @@ git clone git://github.com/josephmc5/puppet-sabnzbd.git sabnzbd
 git clone git://github.com/josephmc5/puppet-headphones.git headphones
 git clone git://github.com/josephmc5/puppet-couchpotatoserver.git couchpotatoserver
 git clone git://github.com/josephmc5/puppet-sickbeard.git sickbeard
-gti clone git://github.com/josephmc5/puppet-minisub.git minisub
+git clone git://github.com/josephmc5/puppet-minisub.git minisub
 
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
     class { 'dropbox': }
     class { 'nginx': }
-    $external_dns = hiera('external_dns', "localhost")             
+    \$external_dns = hiera('external_dns', "localhost")             
     nginx::resource::vhost { "$external_dns":
        ensure   => present,
        www_root => '/var/www',
