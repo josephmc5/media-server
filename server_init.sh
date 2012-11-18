@@ -1,12 +1,13 @@
 #!/bin/bash
 
-wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
-dpkg -i puppetlabs-release-precise.deb
+if [ ! -e ~/puppetlabs-release-precise.deb ]; then
+    wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+fi
+dpkg -i ~/puppetlabs-release-precise.deb
 apt-get update
 apt-get install -y puppet git-core
 cat > /etc/puppet/hiera.yaml << EOF
 :hierarchy:
-    - %{operatingsystem}
     - common
 :backends:
     - yaml
@@ -27,7 +28,7 @@ git clone git://github.com/evolvingweb/puppet-apt.git apt
 git clone https://github.com/rodjek/puppet-logrotate logrotate
 git clone git://github.com/josephmc5/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
-git clone git://github.com/example42/puppet-java.git java
+git clone git://github.com/puppetlabs/puppetlabs-java.git java
 
 git clone git://github.com/josephmc5/puppet-maraschino.git maraschino
 git clone git://github.com/josephmc5/puppet-plex-server.git plex-server
@@ -43,7 +44,7 @@ node default {
     class { 'dropbox': }
     class { 'nginx': }
     \$external_dns = hiera('external_dns', "localhost")             
-    nginx::resource::vhost { "$external_dns":
+    nginx::resource::vhost { "\$external_dns":
        ensure   => present,
        www_root => '/var/www',
     }   
