@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ ! -e ~/puppetlabs-release-precise.deb ]; then
+if [ ! -e ./puppetlabs-release-precise.deb ]; then
     wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
 fi
-dpkg -i ~/puppetlabs-release-precise.deb
+dpkg -i ./puppetlabs-release-precise.deb
 apt-get update
 apt-get install -y puppet git-core
 cat > /etc/puppet/hiera.yaml << EOF
