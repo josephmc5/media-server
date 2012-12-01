@@ -1,4 +1,6 @@
 external_dns : ''
+services_user: ''
+
 logrotate : 'true'
 sabnzbd_host : '127.0.0.1'
 sabnzbd_port : '8080'

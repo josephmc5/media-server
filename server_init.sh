@@ -54,6 +54,11 @@ node default {
         group => "root",
         mode => '0777',
     }
+    \$services_user = hiera('services_user')             
+    user { "\$services_user":
+        allowdupe => false,
+        ensure => 'present',
+    }
     class { 'dropbox': }
     class { 'nginx': }
     \$external_dns = hiera('external_dns', "localhost")             
