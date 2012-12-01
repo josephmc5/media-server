@@ -47,6 +47,13 @@ git clone git://github.com/josephmc5/puppet-minisub.git minisub
 
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
+    \$app_dir = hiera('app_dir')             
+    file { "\$app_dir":
+        ensure => directory,
+        owner => "root",
+        group => "root",
+        mode => '0777',
+    }
     class { 'dropbox': }
     class { 'nginx': }
     \$external_dns = hiera('external_dns', "localhost")             
