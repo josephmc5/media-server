@@ -11,7 +11,7 @@ dpkg -i ./puppetlabs-release-precise.deb
 dpkg -i plex-archive-keyring_2.0.0_all.deb
 
 apt-get update
-apt-get install -y puppet git-core
+apt-get install -y puppet git-core aptitiude
 cat > /etc/puppet/hiera.yaml << EOF
 :hierarchy:
     - common
