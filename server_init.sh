@@ -25,7 +25,7 @@ cp common.yaml /etc/puppet/hieradata/
 
 cd /etc/puppet/modules
 git clone git://github.com/example42/puppet-vim.git vim
-git clone git://github.com/jfryman/puppet-nginx.git nginx
+git clone git://github.com/phendryx/puppet-nginx.git nginx
 git clone git://github.com/puppetlabs/puppetlabs-stdlib.git stdlib
 git clone git://github.com/onyxpoint/pupmod-concat.git concat
 git clone https://github.com/josephmc5/puppet-python.git python
@@ -34,16 +34,16 @@ git clone git://github.com/evolvingweb/puppet-apt.git apt
 git clone https://github.com/rodjek/puppet-logrotate logrotate
 git clone git://github.com/josephmc5/puppet-dropbox.git dropbox
 git clone git://github.com/plathrop/puppet-module-supervisor.git supervisor
-git clone git://github.com/puppetlabs/puppetlabs-java.git java
+git clone git://github.com/phendryx/puppetlabs-java.git java
 
-git clone git://github.com/josephmc5/puppet-maraschino.git maraschino
-git clone git://github.com/josephmc5/puppet-plex-server.git plex-server
-git clone git://github.com/josephmc5/puppet-subsonic.git subsonic
-git clone git://github.com/josephmc5/puppet-sabnzbd.git sabnzbd
-git clone git://github.com/josephmc5/puppet-headphones.git headphones
-git clone git://github.com/josephmc5/puppet-couchpotatoserver.git couchpotatoserver
-git clone git://github.com/josephmc5/puppet-sickbeard.git sickbeard
-git clone git://github.com/josephmc5/puppet-minisub.git minisub
+git clone git://github.com/phendryx/puppet-maraschino.git maraschino
+git clone git://github.com/phendryx/puppet-plex-server.git plex-server
+git clone git://github.com/phendryx/puppet-subsonic.git subsonic
+git clone git://github.com/phendryx/puppet-sabnzbd.git sabnzbd
+git clone git://github.com/phendryx/puppet-headphones.git headphones
+git clone git://github.com/phendryx/puppet-couchpotatoserver.git couchpotatoserver
+git clone git://github.com/phendryx/puppet-sickbeard.git sickbeard
+git clone git://github.com/phendryx/puppet-minisub.git minisub
 
 cat > /etc/puppet/manifests/site.pp << EOF
 node default {
