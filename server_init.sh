@@ -4,6 +4,12 @@ if [ ! -e ./puppetlabs-release-precise.deb ]; then
     wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
 fi
 dpkg -i ./puppetlabs-release-precise.deb
+
+ if [ ! -e ./plex-archive-keyring_2.0.0_all.deb ]; then
+     wget http://plexapp.com/repo/pool/main/p/plex-archive-keyring/plex-archive-keyring_2.0.0_all.deb
+ fi
+dpkg -i plex-archive-keyring_2.0.0_all.deb
+
 apt-get update
 apt-get install -y puppet git-core
 cat > /etc/puppet/hiera.yaml << EOF
